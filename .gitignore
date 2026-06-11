@@ -1,0 +1,17 @@
+# Node dependencies and logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled TypeScript output
+mcp-server/build/
+
+# EVM Smart Contract compilation caches
+contracts/out/
+contracts/cache/
+
+# Local Environment secrets (Private Keys & Endpoints)
+.env
+.env.*
+!.env.example

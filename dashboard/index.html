@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pharos Autonomous Guardian | Dashboard Portal</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Glow Vectors -->
+  <div class="glow-bg bg-blue"></div>
+  <div class="glow-bg bg-emerald"></div>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo-area">
+        <div class="logo-shield">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </div>
+        <div>
+          <h2>PHAROS</h2>
+          <span>AUTONOMOUS GUARDIAN</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#compliance" class="nav-item active" id="nav-compliance">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          Compliance Registry
+        </a>
+        <a href="#telemetry" class="nav-item" id="nav-telemetry">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          Risk Telemetry
+        </a>
+        <a href="#invoice" class="nav-item" id="nav-invoice">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          Invoice Center (402)
+        </a>
+        <a href="#execution" class="nav-item" id="nav-execution">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Execution Gate
+        </nav>
+      </aside>
+
+      <div class="sidebar-footer">
+        <div class="connection-status">
+          <span class="status-dot"></span>
+          <div>
+            <span class="status-title">Pharos Atlantic L1</span>
+            <span class="status-network">ChainID 688689</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <h1>Autonomous Control System Panel</h1>
+        <div class="action-header">
+          <div class="metric-pill">
+            <span class="pill-label">MCP Mode:</span>
+            <span class="pill-value">Stdio Active</span>
+          </div>
+          <div class="metric-pill">
+            <span class="pill-label">CertiK Rating:</span>
+            <span class="pill-value score-green">Audit-Ready</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Panel Content Sections -->
+      <div class="panel-scroller">
+        
+        <!-- SECTION 1: Compliance Registry -->
+        <section id="panel-compliance" class="tab-panel active">
+          <div class="panel-grid-top">
+            <div class="glass-card main-form">
+              <h3>RWA Clearance Registry Manager</h3>
+              <p class="subtitle">Query on-chain compliance statuses or perform simulated batch updates for agent wallets.</p>
+              
+              <form id="compliance-form" class="dashboard-form">
+                <div class="form-group">
+                  <label for="comp-wallet">Agent Wallet Address</label>
+                  <input type="text" id="comp-wallet" value="0x34b2434b2462423Ef4c40552b6F56C7D1bFe045" placeholder="0x...">
+                </div>
+                <div class="form-group-row">
+                  <div class="form-group">
+                    <label for="comp-asset">RWA Asset Class</label>
+                    <select id="comp-asset">
+                      <option value="US_DEBT">US_DEBT (US Treasury Bills)</option>
+                      <option value="REAL_ESTATE">REAL_ESTATE (Tokenized Properties)</option>
+                      <option value="COMMODITIES">COMMODITIES (Gold & Metals)</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="btn-group">
+                  <button type="button" id="btn-query-compliance" class="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    Query Registry Status
+                  </button>
+                  <button type="button" id="btn-batch-compliance" class="btn btn-secondary">
+                    Run Batch Onboard Simulation
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Terminal Logger -->
+            <div class="glass-card terminal-logger">
+              <div class="terminal-header">
+                <span class="terminal-dot red"></span>
+                <span class="terminal-dot yellow"></span>
+                <span class="terminal-dot green"></span>
+                <span class="terminal-title">Registry Node Logs</span>
+              </div>
+              <div id="compliance-terminal" class="terminal-body">
+                <p class="log-info">[System Log] Node booted. Connecting compliance RPC client...</p>
+                <p class="log-info">[System Log] Connected to Pharos registry contract at 0x8DA5...89f1</p>
+                <p class="log-info">[System Log] Ready for incoming query triggers.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions and Grid Visuals -->
+          <div class="panel-grid-bottom mt-4">
+            <div class="glass-card status-card">
+              <h4>Active Clearance Profile</h4>
+              <div id="clearance-status-display" class="clearance-box cleared">
+                <span class="clearance-badge">🟢 CLEARED</span>
+                <div class="clearance-details">
+                  <p><strong>Wallet:</strong> <span class="text-mute" id="display-wallet">0x34b2...bFe045</span></p>
+                  <p><strong>Asset Identifier:</strong> <span id="display-asset">US_DEBT</span></p>
+                  <p><strong>Restriction Rule:</strong> <span id="display-code">US_ONLY</span></p>
+                  <p><strong>Verification Time:</strong> <span id="display-time">2026-06-11T02:30:00Z</span></p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card gas-card">
+              <h4>Gas Optimization Telemetry</h4>
+              <div class="gas-stat-grid">
+                <div class="gas-stat-item">
+                  <span class="gas-value">1,432 GAS</span>
+                  <span class="gas-label">Bytes32 Read (Hardened)</span>
+                </div>
+                <div class="gas-stat-item">
+                  <span class="gas-value score-red">28,941 GAS</span>
+                  <span class="gas-label">String Read (Original)</span>
+                </div>
+              </div>
+              <p class="gas-text">Updating keys from string to fixed <code>bytes32</code> format provides a <strong>95% gas overhead reduction</strong> during registry check runs.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: Risk Telemetry -->
+        <section id="panel-telemetry" class="tab-panel">
+          <div class="panel-grid-top">
+            <div class="glass-card main-form">
+              <h3>EVM Bytecode Threat Telemetry</h3>
+              <p class="subtitle">Enter target contract address to execute dynamic bytecode disassembly and extract risk variables.</p>
+              
+              <form id="telemetry-form" class="dashboard-form">
+                <div class="form-group">
+                  <label for="telemetry-target">Target Contract / Pool Address</label>
+                  <div class="input-select-group">
+                    <input type="text" id="telemetry-target" value="0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" placeholder="0x...">
+                    <select id="prefill-targets">
+                      <option value="0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48">USDC Pool (Standard Proxy)</option>
+                      <option value="0xd128f118128fef88e8dcfcf77e0c45151525ffcf">Malicious Honeypot (SELFDESTRUCT)</option>
+                      <option value="0x1234567890123456789012345678901234567890">EOA Wallet (No Bytecode)</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <button type="button" id="btn-analyze-bytecode" class="btn btn-primary">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg>
+                  Decompile & Scan Bytecode
+                </button>
+              </form>
+            </div>
+
+            <!-- Assembly Listing Screen -->
+            <div class="glass-card assembly-panel">
+              <div class="assembly-header">
+                <span>EVM Assembly Disassembly Stream</span>
+                <span class="badge" id="assembly-status">Idle</span>
+              </div>
+              <div id="assembly-stream" class="assembly-body font-mono">
+                <div class="assembly-line"><span class="pc">0x0000</span> <span class="op">WAITING FOR TARGET SCAN...</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk Assessment Outcome -->
+          <div class="panel-grid-bottom mt-4">
+            <div class="glass-card status-card">
+              <h4>Jury Telemetry Threat Assessment</h4>
+              <div id="risk-score-badge" class="risk-badge low">🟢 LOW RISK (Score: 0/10)</div>
+              <p id="risk-recommendation" class="mt-2 text-mute">🛡️ SAFE: The contract bytecode does not contain high-risk execution patterns. Safe to interact.</p>
+            </div>
+
+            <div class="glass-card matrix-card">
+              <h4>Threat Matrix Scores</h4>
+              <table class="threat-table">
+                <thead>
+                  <tr>
+                    <th>Vulnerability Class</th>
+                    <th>Detected</th>
+                    <th>Risk Rating</th>
+                  </tr>
+                </thead>
+                <tbody id="threat-matrix-tbody">
+                  <tr>
+                    <td>Unchecked Self-Destruct</td>
+                    <td><span class="safe-badge">✅ NO</span></td>
+                    <td>0 / 10</td>
+                  </tr>
+                  <tr>
+                    <td>Arbitrary Delegatecall Hijack</td>
+                    <td><span class="safe-badge">✅ NO</span></td>
+                    <td>0 / 10</td>
+                  </tr>
+                  <tr>
+                    <td>Direct Asset Minting Control</td>
+                    <td><span class="safe-badge">✅ NO</span></td>
+                    <td>0 / 10</td>
+                  </tr>
+                  <tr>
+                    <td>Low-Level Call Execution</td>
+                    <td><span class="safe-badge">✅ NO</span></td>
+                    <td>0 / 10</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: Invoice Center -->
+        <section id="panel-invoice" class="tab-panel">
+          <div class="panel-grid-top">
+            <div class="glass-card main-form">
+              <h3>HTTP 402 Pay-Per-Call Invoice Hub</h3>
+              <p class="subtitle">Compile pay-per-call requirements signed with EIP-712 cryptographic proofs.</p>
+              
+              <form id="invoice-form" class="dashboard-form">
+                <div class="form-group-row">
+                  <div class="form-group">
+                    <label for="inv-amount">Amount (PROS)</label>
+                    <input type="number" id="inv-amount" value="0.05" step="0.01">
+                  </div>
+                  <div class="form-group">
+                    <label for="inv-recipient">Developer Wallet Address</label>
+                    <input type="text" id="inv-recipient" value="0x90F8bf32434b2462423Ef4c40552b6F56C7D1bFe" placeholder="0x...">
+                  </div>
+                </div>
+                
+                <button type="button" id="btn-generate-invoice" class="btn btn-primary">
+                  Generate EIP-712 Invoice Payload
+                </button>
+              </form>
+            </div>
+
+            <!-- Receipt Display -->
+            <div class="glass-card receipt-panel">
+              <div class="receipt-header">
+                <span>Anvita Flow Digital Invoice Receipt</span>
+                <span class="badge badge-pending">PENDING</span>
+              </div>
+              <div id="receipt-display" class="receipt-body">
+                <div class="receipt-row text-center mt-4">
+                  <span class="receipt-big-amount">0.05 PROS</span>
+                  <span class="receipt-label">Invoice Required (HTTP 402)</span>
+                </div>
+                <hr>
+                <div class="receipt-details">
+                  <div class="receipt-row">
+                    <span class="detail-label">Recipient:</span>
+                    <span class="detail-value font-mono">0x90F8...D1bFe</span>
+                  </div>
+                  <div class="receipt-row">
+                    <span class="detail-label">Invoice ID:</span>
+                    <span class="detail-value font-mono" id="receipt-id">Pending...</span>
+                  </div>
+                  <div class="receipt-row">
+                    <span class="detail-label">EIP-712 Signer:</span>
+                    <span class="detail-value font-mono" id="receipt-signer">Pending...</span>
+                  </div>
+                  <div class="receipt-row">
+                    <span class="detail-label">Signature hash:</span>
+                    <span class="detail-value font-mono text-truncate" id="receipt-sig">Pending...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Raw Payload View -->
+          <div class="glass-card mt-4">
+            <div class="raw-payload-header">
+              <h4>JSON-RPC Response Payload</h4>
+              <button id="btn-copy-json" class="btn btn-secondary btn-sm">Copy Code Block</button>
+            </div>
+            <pre class="json-code"><code id="invoice-json-output">{
+  "status": "PAYMENT_REQUIRED",
+  "message": "Execute EIP-712 generation to fetch JSON format..."
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- SECTION 4: Execution Gate -->
+        <section id="panel-execution" class="tab-panel">
+          <div class="panel-grid-top">
+            <div class="glass-card main-form">
+              <h3>Agent Gate Circuit Configuration</h3>
+              <p class="subtitle">Simulate parameters and update whitelists inside the SafeExecutionGate contract.</p>
+              
+              <form id="execution-form" class="dashboard-form">
+                <div class="form-group-row">
+                  <div class="form-group">
+                    <label for="gate-max-val">Max Tx Value Limit (ETH)</label>
+                    <input type="number" id="gate-max-val" value="5">
+                  </div>
+                  <div class="form-group">
+                    <label for="gate-max-gas">Max Gas Price (Gwei)</label>
+                    <input type="number" id="gate-max-gas" value="150">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="gate-cooldown">Cooldown Period (Seconds)</label>
+                  <input type="number" id="gate-cooldown" value="30">
+                </div>
+                
+                <button type="button" id="btn-update-thresholds" class="btn btn-primary">
+                  Update Risk Thresholds
+                </button>
+              </form>
+            </div>
+
+            <!-- Whitelist Manager -->
+            <div class="glass-card whitelist-panel">
+              <h4>Target Whitelist Registry</h4>
+              <p class="subtitle">Only whitelisted addresses can be called by the agent execution portal.</p>
+              
+              <div class="add-whitelist-row">
+                <input type="text" id="whitelist-address-input" placeholder="0x..." class="form-control">
+                <button type="button" id="btn-add-whitelist" class="btn btn-secondary">Whitelist Address</button>
+              </div>
+
+              <div class="whitelist-list-container">
+                <ul id="whitelist-ul" class="whitelist-list">
+                  <li class="whitelist-item">
+                    <span class="font-mono">0x2fd664d510504faaacb12ad0f544996e12345678</span>
+                    <span class="badge badge-success">Whitelisted</span>
+                  </li>
+                  <li class="whitelist-item">
+                    <span class="font-mono">0x8DA5cb5b3F4Ba83d41e2A66589f1000000000000</span>
+                    <span class="badge badge-success">Whitelisted</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Gate Simulation -->
+          <div class="glass-card mt-4">
+            <h3>SafeExecutionGate Transaction Simulation Portal</h3>
+            <p class="subtitle">Submit a transaction call to verify if the gate protective circuits clear it or trigger an emergency halt.</p>
+            
+            <div class="sim-row">
+              <div class="form-group flex-2">
+                <label for="sim-target">Call Destination Address</label>
+                <input type="text" id="sim-target" value="0x8DA5cb5b3F4Ba83d41e2A66589f1000000000000" class="form-control">
+              </div>
+              <div class="form-group flex-1">
+                <label for="sim-value">Transaction Value (ETH)</label>
+                <input type="number" id="sim-value" value="0.1" class="form-control">
+              </div>
+              <div class="form-group flex-1">
+                <label for="sim-gas">Gas Price (Gwei)</label>
+                <input type="number" id="sim-gas" value="45" class="form-control">
+              </div>
+              <div class="form-group flex-1 align-end">
+                <button type="button" id="btn-run-simulation" class="btn btn-secondary w-full">Run Pre-Flight Check</button>
+              </div>
+            </div>
+
+            <div id="simulation-verdict" class="simulation-verdict-box idle">
+              <span class="verdict-title">System Status: Idle</span>
+              <p class="verdict-desc">Configure parameters and run transaction checks.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

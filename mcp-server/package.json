@@ -1,0 +1,21 @@
+{
+  "name": "pharos-autonomous-guardian-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server wrapper for Pharos Autonomous Guardian (PAG)",
+  "main": "build/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.2"
+  }
+}
