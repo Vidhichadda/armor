@@ -1,0 +1,21 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/dashboard/index.html"
+    },
+    {
+      "source": "/style.css",
+      "destination": "/dashboard/style.css"
+    },
+    {
+      "source": "/app.js",
+      "destination": "/dashboard/app.js"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/dashboard/:path*"
+    }
+  ]
+}
